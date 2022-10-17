@@ -24,16 +24,14 @@ class MainViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PlacesTableViewCell
         let restaurants = restarauntNames[indexPath.row]
-        var content = UIListContentConfiguration.cell()
+
+        cell.nameLabel.text = "\(restaurants)"
+        cell.imageOfPlace.image = UIImage(named: "\(restarauntNames[indexPath.row])")
+        cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.height / 2
+        cell.imageOfPlace.clipsToBounds = true
         
-        content.text = "\(restaurants)"
-        content.imageProperties.cornerRadius = cell.frame.size.height / 2
-        cell.imageView?.clipsToBounds = true
-        content.image = UIImage(named: "\(restarauntNames[indexPath.row])")
-        
-        cell.contentConfiguration = content
         return cell
     }
    
