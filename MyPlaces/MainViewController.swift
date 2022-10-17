@@ -14,6 +14,7 @@ class MainViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
     }
 
     // MARK: - Table view data source
@@ -25,15 +26,21 @@ class MainViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let restaurants = restarauntNames[indexPath.row]
-        var content = cell.defaultContentConfiguration()
+        var content = UIListContentConfiguration.cell()
         
         content.text = "\(restaurants)"
-        content.imageProperties.cornerRadius = 20
-        content.imageProperties.maximumSize = CGSize(width: 100, height: 100)
+        content.imageProperties.cornerRadius = cell.frame.size.height / 2
+        cell.imageView?.clipsToBounds = true
         content.image = UIImage(named: "\(restarauntNames[indexPath.row])")
         
         cell.contentConfiguration = content
         return cell
+    }
+   
+//MARK: - TableView Delegate
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        120
     }
 
 //MARK: - Navigation
