@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>To specify direction to your favourite places, also to get the adress of your places</string>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) photo use</string>
 	<key>UIApplicationSceneManifest</key>

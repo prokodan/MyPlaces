@@ -7,6 +7,10 @@
 
 import RealmSwift
 
+
+
+
+
 let realm = try! Realm()
 
 class StorageManager {
@@ -28,6 +32,5 @@ class StorageManager {
            realm.delete(place)
        }
    }
-    
     
 }
