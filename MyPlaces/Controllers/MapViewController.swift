@@ -18,7 +18,6 @@ protocol MapViewControllerDelegate {
 }
 
 class MapViewController: UIViewController {
-
     //MARK: - IBOutlets
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var mapPinImage: UIImageView!
@@ -45,7 +44,7 @@ class MapViewController: UIViewController {
         }
     }
 
-    //MARK: - viewDidLoad
+    //MARK: - VC Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         addressLabel.text = ""
@@ -54,13 +53,11 @@ class MapViewController: UIViewController {
     }
     
     //MARK: - Private Methods
-    
     private func setupMapView() {
         goButton.isHidden = true
         mapManager.checkLocationServices(mapView: mapView, segueIdentifier: incomeSegueIdentifier) {
             mapManager.locationManager.delegate = self
         }
-        
         if incomeSegueIdentifier == "showPlace" {
             mapManager.setupPlaceMark(place: place, mapView: mapView)
             mapPinImage.isHidden = true
@@ -109,7 +106,6 @@ extension MapViewController: MKMapViewDelegate {
             imageView.image = UIImage(data: imageData)
             annotationView?.rightCalloutAccessoryView = imageView
         }
-        
         return annotationView
     }
     
@@ -124,7 +120,6 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         geocoder.cancelGeocode()
-        
         geocoder.reverseGeocodeLocation(center) { (placemarks, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -154,13 +149,12 @@ extension MapViewController: MKMapViewDelegate {
         
         return renderer
     }
-    
 }
+
 //MARK: - CLLocationManagerDelegate
 extension MapViewController: CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         mapManager.checkLocationAuthorization(mapView: mapView, segueIdentifier: incomeSegueIdentifier)
     }
-    
 }

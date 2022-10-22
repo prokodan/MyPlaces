@@ -8,7 +8,7 @@
 import UIKit
 
 class NewPlaceViewController: UITableViewController {
-    
+    //MARK: - IBOutlets
     @IBOutlet var placeImage: UIImageView!
     @IBOutlet var saveButton: UIBarButtonItem!
     @IBOutlet var placeName: UITextField!
@@ -16,9 +16,11 @@ class NewPlaceViewController: UITableViewController {
     @IBOutlet var placeType: UITextField!
     @IBOutlet var ratingControl: RatingControl!
     
+    //MARK: - Public Properties
     var currentPlace: Place!
     var imageIsChanged = false
     
+    //MARK: - VC Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
@@ -28,14 +30,12 @@ class NewPlaceViewController: UITableViewController {
     }
 
     //MARK: - TableView Delegate
-    
     // Checking the row for hiding keyboard
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            
             let cameraIcon = #imageLiteral(resourceName: "camera")
             let photoIcon = #imageLiteral(resourceName: "photo")
-            
+
             let actionSheet = UIAlertController(title: nil ,
                                                 message: nil,
                                                 preferredStyle: .actionSheet)
@@ -61,7 +61,6 @@ class NewPlaceViewController: UITableViewController {
         } else {
             view.endEditing(true)
         }
-        
     }
     
     //MARK: - Public Methods
@@ -83,8 +82,8 @@ class NewPlaceViewController: UITableViewController {
             StorageManager.shared.saveObject(newPlace)
         }
     }
- //MARK: - Navigation
     
+ //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier,
               let mapVC = segue.destination as? MapViewController else {return}
@@ -127,8 +126,6 @@ class NewPlaceViewController: UITableViewController {
     }
     
     //MARK: - IBActions
-    
-    
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
@@ -136,7 +133,6 @@ class NewPlaceViewController: UITableViewController {
 
 //MARK: - UITextFieldDelegate
 extension NewPlaceViewController: UITextFieldDelegate {
-
     //Hiding keyboard tapping done button
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -156,7 +152,6 @@ extension NewPlaceViewController: UITextFieldDelegate {
 extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
     private func chooseImagePicker(source: UIImagePickerController.SourceType) {
-        
         if UIImagePickerController.isSourceTypeAvailable(source) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
@@ -165,7 +160,6 @@ extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationC
             
             present(imagePicker, animated: true)
         }
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -176,15 +170,12 @@ extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationC
         
         dismiss(animated: true)
     }
-    
 }
 
 extension NewPlaceViewController: MapViewControllerDelegate {
     func getAddress(_ address: String?) {
         placeLocation.text = address
     }
-    
-    
-    
+
 }
 

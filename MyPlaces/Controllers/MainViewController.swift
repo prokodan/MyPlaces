@@ -9,11 +9,12 @@ import UIKit
 import RealmSwift
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    //MARK: - IBOutlets
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var reversedSortingButton: UIBarButtonItem!
     
+        //MARK: - Private Properties
     private let searchController = UISearchController(searchResultsController: nil)
     private var places: Results<Place>!
     private var filteredPlaces: Results<Place>!
@@ -26,22 +27,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return searchController.isActive && !searchBarIsEmpty
     }
     
+    //MARK: - VC Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         places = realm.objects(Place.self)
         setupSearchController()
-        
     }
 
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering {
-            return filteredPlaces.count
-        } else {
-            return places.count
-        }
+        isFiltering ? filteredPlaces.count : places.count
     }
-
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PlacesTableViewCell
@@ -57,7 +53,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     //MARK: - TableViewDelegate
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let place = places[indexPath.row]
@@ -70,7 +65,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-
 //MARK: - Navigation
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         guard let newPlaceVC = segue.source as? NewPlaceViewController else {return}
@@ -88,11 +82,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     //MARK: - Sorting Methods
-    
     @IBAction func sortSelection(_ sender: UISegmentedControl) {
         sorting()
     }
-    
     
     @IBAction func reversedSorting(_ sender: UIBarButtonItem) {
         ascendingSorting.toggle()
@@ -115,7 +107,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 }
 //MARK: - UISearchController Methods
 extension MainViewController: UISearchResultsUpdating {
-    
     private func setupSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -132,5 +123,4 @@ extension MainViewController: UISearchResultsUpdating {
         filteredPlaces = places.filter("name CONTAINS[c] %@ OR location CONTAINS[c] %@", searchText, searchText)
         tableView.reloadData()
     }
-    
 }

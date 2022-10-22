@@ -25,26 +25,4 @@ class Place: Object {
         self.imageData = imageData
         self.rating = rating
     }
-    
-//     let restarauntNames = ["Балкан Гриль", "Бочка", "Вкусные истории", "Дастархан", "Индокитай", "Классик", "Шок", "Bonsai", "Burger Heroes", "Kitchen", "Love&Life", "Morris Pub", "Sherlock Holmes", "Speak Easy", "X.O"]
-//
-//    func savePlaces() {
-//
-//
-//        for place in restarauntNames {
-//            let image = UIImage(named: place)
-//            guard let imageData = image?.pngData() else {return}
-//
-//            let newPlace = Place()
-//            newPlace.name = place
-//            newPlace.location = "Ufa"
-//            newPlace.type = "Restaurant"
-//            newPlace.imageData = imageData
-//
-//            StorageManager.shared.saveObject(newPlace)
-//        }
-//
-//
-//    }
-    
 }
