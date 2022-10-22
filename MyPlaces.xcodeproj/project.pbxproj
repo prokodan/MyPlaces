@@ -42,7 +42,7 @@
 		9E61AB3928FEF26B00C04267 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		9E61AB3C28FFD40F00C04267 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		9EAE8FB529015DA5001FF5C9 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
-		9EE65C532903E3350094B9E6 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		9EE65C532903E3350094B9E6 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Readme.md; path = MyPlaces/Readme.md; sourceTree = "<group>"; };
 		9EE65C54290423A20094B9E6 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,6 +63,8 @@
 		9E61AB0A28FD4A0000C04267 = {
 			isa = PBXGroup;
 			children = (
+				9EE65C54290423A20094B9E6 /* .gitignore */,
+				9EE65C532903E3350094B9E6 /* Readme.md */,
 				9E61AB1528FD4A0000C04267 /* MyPlaces */,
 				9E61AB1428FD4A0000C04267 /* Products */,
 			);
@@ -88,8 +90,6 @@
 				9EAE8FB7290169A1001FF5C9 /* Services */,
 				9E61AB1F28FD4A0200C04267 /* Assets.xcassets */,
 				9E61AB2428FD4A0200C04267 /* Info.plist */,
-				9EE65C532903E3350094B9E6 /* Readme.md */,
-				9EE65C54290423A20094B9E6 /* .gitignore */,
 			);
 			path = MyPlaces;
 			sourceTree = "<group>";
